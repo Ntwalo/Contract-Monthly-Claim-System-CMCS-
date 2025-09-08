@@ -1,0 +1,35 @@
+classDiagram
+    class Lecturer {
+      +int LecturerID
+      +string Name
+      +string Email
+      +decimal HourlyRate
+      +string BankDetails
+    }
+
+    class Claim {
+      +int ClaimID
+      +int LecturerID
+      +decimal HoursWorked
+      +decimal HourlyRate
+      +decimal TotalAmount
+      +string Status  <<Pending|Approved|Rejected>>
+      +DateTime SubmissionDate
+      +string Notes
+    }
+
+    class Document {
+      +int DocumentID
+      +int ClaimID
+      +string FileName
+      +string FilePath
+      +DateTime UploadDate
+    }
+
+    class UserRole {
+      +int RoleID
+      +string RoleName  <<Lecturer|Coordinator|Manager>>
+    }
+
+    Lecturer "1" --> "0..*" Claim : submits
+    Claim "1" --> "0..*" Document : has
